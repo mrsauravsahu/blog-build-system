@@ -15,10 +15,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Bazel
-        uses: bazelbuild/setup-bazel@v3
-        with:
-          bazel-version: '4.1.0'
+      - name: Setup Bazelisk
+        uses: bazelbuild/setup-bazelisk@v2
 
       - name: Build with Bazel
         run: bazel build //:app
