@@ -1,1 +1,2 @@
-startup --output_base=.bazel
+startup --output_user_root=.bazel
+build --incompatible_sandbox_hermetic_tmp=false
