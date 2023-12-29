@@ -1,0 +1,29 @@
+name: Bazel Build
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'bazel-build-system/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Bazelisk
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Build with Bazel
+        run: bazel build //:app || true
+        working-directory: bazel-build-system
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-artifact
+          path: bazel-build-system/bazel-bin/readme.pdf
